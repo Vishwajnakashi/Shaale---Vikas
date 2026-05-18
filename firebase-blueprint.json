@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "School": {
+      "title": "School",
+      "description": "Information about the school registered in the system.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the school" },
+        "location": { "type": "string", "description": "Rural location or village name" },
+        "description": { "type": "string", "description": "Brief history/mission of the school" },
+        "headmasterName": { "type": "string", "description": "Name of the presiding headmaster" },
+        "imageUrl": { "type": "string", "description": "Main photo of the school" }
+      },
+      "required": ["name", "location", "headmasterName"]
+    },
+    "Need": {
+      "title": "Need",
+      "description": "A specific micro-requirement for school infrastructure or resources.",
+      "type": "object",
+      "properties": {
+        "schoolId": { "type": "string", "description": "Reference to the School entity" },
+        "title": { "type": "string", "description": "Short title (e.g., Roof Repair)" },
+        "description": { "type": "string", "description": "Detailed description of the requirement" },
+        "category": { "type": "string", "enum": ["Infrastructure", "Supplies", "Furniture", "Technology", "Other"] },
+        "costEstimate": { "type": "number", "description": "Estimated cost in local currency" },
+        "collectedAmount": { "type": "number", "description": "Current pledged/collected amount" },
+        "status": { "type": "string", "enum": ["Open", "In Progress", "Fulfilled"] },
+        "beforeImageUrl": { "type": "string", "description": "Current state photo" },
+        "afterImageUrl": { "type": "string", "description": "Photo after fulfillment" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["schoolId", "title", "costEstimate", "status"]
+    },
+    "Pledge": {
+      "title": "Pledge",
+      "description": "A commitment from an alumni to fulfill a need.",
+      "type": "object",
+      "properties": {
+        "needId": { "type": "string", "description": "Reference to the Need entity" },
+        "donorId": { "type": "string", "description": "User ID of the donor" },
+        "donorName": { "type": "string", "description": "Name of the alumni pledging" },
+        "amount": { "type": "number", "description": "Amount pledged" },
+        "pledgeType": { "type": "string", "enum": ["Funds", "Items"] },
+        "message": { "type": "string", "description": "Optional message from the donor" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["needId", "donorName", "amount", "pledgeType"]
+    }
+  },
+  "firestore": {
+    "schools": {
+      "schema": "School",
+      "description": "Collection of schools"
+    },
+    "needs": {
+      "schema": "Need",
+      "description": "Collection of micro-needs for schools"
+    },
+    "pledges": {
+      "schema": "Pledge",
+      "description": "Collection of pledges made by alumni"
+    }
+  }
+}

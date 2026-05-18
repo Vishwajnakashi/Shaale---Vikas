@@ -1,0 +1,8 @@
+{
+  "name": "Shaale-Vikas",
+  "description": "Shaale-Vikas is a digital platform connecting rural Indian schools with their alumni networks to address urgent infrastructure, water, and educational needs through a transparent, high-impact pledging system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
